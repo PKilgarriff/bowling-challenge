@@ -42,6 +42,7 @@
     "enquirer": "^2.3.6",
     "es-abstract": "^1.19.2",
     "es-to-primitive": "^1.2.1",
+    "esbuild": "^0.14.31",
     "escape-string-regexp": "^4.0.0",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-module-utils": "^2.7.3",
@@ -164,7 +165,8 @@
   },
   "scripts": {
     "coveralls": "jest --coverage && ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info",
-    "test": "jest --coverage --verbose"
+    "test": "jest --coverage --verbose",
+    "build": "esbuild index.js --bundle  --outfile=bundle.js --watch"
   },
   "repository": {
     "type": "git",

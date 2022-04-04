@@ -1,6 +1,73 @@
-<h1>Bowling Scorecard</h1>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="stylesheet.css" />
+  </head>
+  <body>
+    <h1 id="title">Bowling Scorecard</h1>
+    <div id="main-container">
+      <div id="frame-table">
+        <table class="scorecard">
+          <tr>
+            <th colspan="6">Frame 1</th>
+            <th colspan="6">Frame 2</th>
+            <th colspan="6">Frame 3</th>
+            <th colspan="6">Frame 4</th>
+            <th colspan="6">Frame 5</th>
+            <th colspan="6">Frame 6</th>
+            <th colspan="6">Frame 7</th>
+            <th colspan="6">Frame 8</th>
+            <th colspan="6">Frame 9</th>
+            <th colspan="6">Frame 10</th>
+            <th colspan="6">Total Score</th>
+          </tr>
+          <tr>
+            <td id="frame1-first" colspan="3"></td>
+            <td id="frame1-second" colspan="3"></td>
+            <td id="frame2-first" colspan="3"></td>
+            <td id="frame2-second" colspan="3"></td>
+            <td id="frame3-first" colspan="3"></td>
+            <td id="frame3-second" colspan="3"></td>
+            <td id="frame4-first" colspan="3"></td>
+            <td id="frame4-second" colspan="3"></td>
+            <td id="frame5-first" colspan="3"></td>
+            <td id="frame5-second" colspan="3"></td>
+            <td id="frame6-first" colspan="3"></td>
+            <td id="frame6-second" colspan="3"></td>
+            <td id="frame7-first" colspan="3"></td>
+            <td id="frame7-second" colspan="3"></td>
+            <td id="frame8-first" colspan="3"></td>
+            <td id="frame8-second" colspan="3"></td>
+            <td id="frame9-first" colspan="3"></td>
+            <td id="frame9-second" colspan="3"></td>
+            <td id="frame10-first" colspan="3"></td>
+            <td id="frame10-second" colspan="3"></td>
+            <td colspan="6"></td>
+          </tr>
+          <tr>
+            <td colspan="6" id="frame1-total"></td>
+            <td colspan="6" id="frame2-total"></td>
+            <td colspan="6" id="frame3-total"></td>
+            <td colspan="6" id="frame4-total"></td>
+            <td colspan="6" id="frame5-total"></td>
+            <td colspan="6" id="frame6-total"></td>
+            <td colspan="6" id="frame7-total"></td>
+            <td colspan="6" id="frame8-total"></td>
+            <td colspan="6" id="frame9-total"></td>
+            <td colspan="6" id="frame10-total"></td>
+            <td colspan="6" id="total-score"></td>
+          </tr>
+        </table>
+        <p id="roll-buttons-intro">Pins Knocked Down:</p>
+        <div id="roll-buttons"></div>
+      </div>
+      <p id="loading-text">JavaScript Loading...</p></p>
+    </div>
 
-<form action="/score" method="POST">
-  <input type="text" value="pins" />
-  <input type="submit" value="Submit" />
-</form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="./bundle.js"></script>
+  </body>
+</html>
