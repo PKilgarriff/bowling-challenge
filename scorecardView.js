@@ -12,11 +12,15 @@ class ScorecardView {
   #addButtonsUpTo(number) {
     for (let i = 0; i <= number; i++) {
       let htmlButton = document.createElement("button");
-      htmlButton.id = `add-${i}-btn`;
-      htmlButton.innerHTML = `${i}`;
+      Object.assign(htmlButton, {
+        id: `add-${i}-btn`,
+        className: "roll-button",
+        innerHTML: `${i}`,
+      });
       this.buttons.append(htmlButton);
       let button = document.querySelector(`#add-${i}-btn`);
-      button.addEventListener("click", () => {
+      button.addEventListener("click", (event) => {
+        console.log(`Target: ${event.target.innerText}`);
         this.model.addScore(i);
         this.display();
       });
@@ -25,7 +29,6 @@ class ScorecardView {
 
   updateAllFrames() {
     for (let i = 0; i < 10; i++) {
-      console.log(i);
       this.updateFrame(i + 1);
     }
   }
