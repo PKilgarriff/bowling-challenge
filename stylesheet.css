@@ -31,7 +31,7 @@ table.scorecard {
   border: 3px solid;
   text-align: center;
   table-layout: fixed;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 table.scorecard th,
 tr,
@@ -67,8 +67,8 @@ table.scorecard tr:nth-child(2) td:last-child {
   text-transform: strong;
 }
 
-/* .roll-button {
-  background-color: #e40057;
+.roll-button {
+  /* background-color: #e40057;
   border-radius: 4px;
   border-style: none;
   box-sizing: border-box;
@@ -80,9 +80,9 @@ table.scorecard tr:nth-child(2) td:last-child {
   font-weight: 500;
   height: 40px;
   line-height: 20px;
-  list-style: none;
-  margin: 0;
-  outline: none;
+  list-style: none; */
+  margin: 10;
+  /* outline: none;
   padding: 10px 16px;
   position: relative;
   text-align: center;
@@ -91,10 +91,10 @@ table.scorecard tr:nth-child(2) td:last-child {
   vertical-align: baseline;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: manipulation;
+  touch-action: manipulation; */
 }
 
-.roll-button:hover,
+/* .roll-button:hover,
 .roll-button:focus {
   background-color: #82f0a5;
 } */

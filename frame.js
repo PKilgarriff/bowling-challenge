@@ -25,10 +25,13 @@ class Frame {
 
   getDetailedScore() {
     return {
-      first: this.scores.first || 0,
+      first: this.scores[0] || 0,
       second: this.scores[1] || 0,
+      strike: this.isStrike(),
+      spare: this.isSpare(),
       bonus: this.getBonus(),
       total: this.getScore(),
+      complete: this.isComplete(),
     };
   }
 

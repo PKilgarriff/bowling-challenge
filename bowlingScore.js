@@ -28,6 +28,7 @@ class BowlingScore {
     let searchFrame = this.frames.find(
       (frame) => frame.getNumber() === frameNumber
     );
+    if (searchFrame === undefined) return undefined;
     return searchFrame.getDetailedScore();
   }
 

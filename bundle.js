@@ -5435,6 +5435,17 @@
             return accumulator + pins;
           }, this.getBonus());
         }
+        getDetailedScore() {
+          return {
+            first: this.scores[0] || 0,
+            second: this.scores[1] || 0,
+            strike: this.isStrike(),
+            spare: this.isSpare(),
+            bonus: this.getBonus(),
+            total: this.getScore(),
+            complete: this.isComplete()
+          };
+        }
         getBonus() {
           return reduce(this.bonuses, (accumulator, pins) => {
             return accumulator + pins;
@@ -5494,6 +5505,12 @@
           let searchFrame = this.frames.find((frame) => frame.getNumber() === frameNumber);
           return searchFrame.getScore();
         }
+        getFrameDetailedScore(frameNumber) {
+          let searchFrame = this.frames.find((frame) => frame.getNumber() === frameNumber);
+          if (searchFrame === void 0)
+            return void 0;
+          return searchFrame.getDetailedScore();
+        }
         addScore(pins) {
           this.applyBonus(pins);
           if (this.#currentFrame() === void 0) {
@@ -5547,22 +5564,68 @@
             button.addEventListener("click", (event) => {
               console.log(`Target: ${event.target.innerText}`);
               this.model.addScore(i);
-              this.display();
+              let pinsAvailable = this.updateAllFrames();
+              this.showButtons();
+              this.hideButtons(pinsAvailable + 1);
+              this.updateTotalScore();
             });
           }
         }
-        updateAllFrames() {
-          for (let i = 0; i < 10; i++) {
-            this.updateFrame(i + 1);
+        showButtons() {
+          for (let i = 0; i <= 10; i++) {
+            let button = document.querySelector(`#add-${i}-btn`);
+            button.style.display = "inline";
           }
         }
-        updateFrame(frameNumber) {
-          let frame = document.querySelector(`#frame${frameNumber}-total`);
-          frame.innerHTML = this.model.getFrameScore(frameNumber);
+        hideButtons(from = 0, to = 10) {
+          for (let i = from; i <= to; i++) {
+            let button = document.querySelector(`#add-${i}-btn`);
+            button.style.display = "none";
+          }
         }
-        display() {
+        updateAllFrames() {
+          let pinsStanding = 10;
+          for (let i = 0; i < 10; i++) {
+            let returnValue = this.updateFrame(i + 1);
+            if (returnValue === false) {
+              break;
+            } else {
+              pinsStanding = returnValue;
+            }
+          }
+          console.log(`Pins Standing [In updateAllFrames]: ${pinsStanding}`);
+          if (pinsStanding == 0) {
+            pinsStanding = 10;
+          }
+          return pinsStanding;
+        }
+        updateFrame(frameNumber) {
+          let scoreObject = this.model.getFrameDetailedScore(frameNumber);
+          if (scoreObject === void 0)
+            return false;
+          let frameFirst = document.querySelector(`#frame${frameNumber}-first`);
+          let frameSecond = document.querySelector(`#frame${frameNumber}-second`);
+          let frameTotal = document.querySelector(`#frame${frameNumber}-total`);
+          if (scoreObject.strike) {
+            frameFirst.innerHTML = "";
+            frameSecond.innerHTML = "<b>X</b>";
+          } else if (scoreObject.spare) {
+            frameFirst.innerHTML = scoreObject.first;
+            frameSecond.innerHTML = "<b>/</b>";
+          } else {
+            frameFirst.innerHTML = scoreObject.first;
+            frameSecond.innerHTML = scoreObject.second;
+          }
+          frameTotal.innerHTML = scoreObject.total;
+          let pinsStanding = 10;
+          if (!scoreObject.complete) {
+            pinsStanding = 10 - (scoreObject.first + scoreObject.second);
+          }
+          console.log(`Pins Standing [In updateFrame ${frameNumber}]: ${pinsStanding}`);
+          return pinsStanding;
+        }
+        updateTotalScore() {
           document.querySelector("#total-score").innerText = this.model.getTotalScore();
-          this.updateAllFrames();
         }
       };
       module.exports = ScorecardView2;
@@ -5574,7 +5637,6 @@
   var ScorecardView = require_scorecardView();
   var model = new BowlingModel();
   var view = new ScorecardView(model);
-  view.display();
 })();
 /**
  * @license
