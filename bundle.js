@@ -5562,7 +5562,6 @@
             this.buttons.append(htmlButton);
             let button = document.querySelector(`#add-${i}-btn`);
             button.addEventListener("click", (event) => {
-              console.log(`Target: ${event.target.innerText}`);
               this.model.addScore(i);
               let pinsAvailable = this.updateAllFrames();
               this.showButtons();
@@ -5593,7 +5592,6 @@
               pinsStanding = returnValue;
             }
           }
-          console.log(`Pins Standing [In updateAllFrames]: ${pinsStanding}`);
           if (pinsStanding == 0) {
             pinsStanding = 10;
           }
@@ -5621,7 +5619,6 @@
           if (!scoreObject.complete) {
             pinsStanding = 10 - (scoreObject.first + scoreObject.second);
           }
-          console.log(`Pins Standing [In updateFrame ${frameNumber}]: ${pinsStanding}`);
           return pinsStanding;
         }
         updateTotalScore() {
